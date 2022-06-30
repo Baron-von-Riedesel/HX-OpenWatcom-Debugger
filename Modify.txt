@@ -1,0 +1,9 @@
+
+  Bugs/Features for adjusted OW WD
+
+  - display/edit XMM registers ( std.trp )
+  - screen flip on INT instruction ( madx86.mad )
+  - interrupt flag set on program entry ( std.trp )
+  - register window on upper right corner ( default.dbg )
+  - crash in wd/wdw if cv S_BLOCKxx symbols in mod ( codeview.dll,codeview.dip )
+
