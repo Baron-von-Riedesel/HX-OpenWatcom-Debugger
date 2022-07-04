@@ -1,4 +1,6 @@
 
+/* 32-bit C sample */
+
 #include <stdio.h>
 
 char *pTest = "Hello, world!\n";

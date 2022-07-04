@@ -5,8 +5,9 @@
 
   - wv source added.
   - WD uses VESA functions to save/restore video state.
+  - WD page flip directly programs CRT ( BIOS works rather bad in many emulations ).
   - check if current video mode is text has been simplified, since
-    the old code has/had problems in DosEmu.
+    the old code has/had problems in DosEmu; works for VGA+VESA only!
 
   v1.0 12/2012
 

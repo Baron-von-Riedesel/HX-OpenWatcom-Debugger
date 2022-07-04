@@ -154,6 +154,7 @@ enum vid_state_info {
 
 
 extern void BIOSSetPage( unsigned_8 pagenb );
+#if 0
 #pragma aux BIOSSetPage =                               \
         " push   ebp            "                       \
         " mov    ah, 5          "                       \
@@ -161,6 +162,29 @@ extern void BIOSSetPage( unsigned_8 pagenb );
         " pop    ebp            "                       \
         parm [ al ]                                     \
         modify exact [ ah ];
+#else
+#pragma aux BIOSSetPage = \
+	"push ds"             \
+	"push 0040h"          \
+	"pop ds"              \
+	"mov ds:[62h],al"     \
+	"mov ah, 00"          \
+	"mov cx, ds:[4Ch]"    \
+	"mul cx"              \
+	"mov ds:[4Eh], ax"    \
+	"mov cx, ax"          \
+	"shr cx, 1"           \
+	"mov dx, ds:[63h]"    \
+	"mov al, 0Ch"         \
+	"mov ah, ch"          \
+	"out dx, ax"          \
+	"inc al"              \
+	"mov ah, cl"          \
+	"out dx, ax"          \
+	"pop ds"              \
+	parm [ al ]           \
+	modify exact [ ah cx dx ];
+#endif
 
 extern unsigned_8 BIOSGetPage( void );
 #pragma aux BIOSGetPage =                               \

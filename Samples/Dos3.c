@@ -1,4 +1,6 @@
 
+/* 16-bit C sample */
+
 #include <stdio.h>
 
 extern __cdecl _setdosstdfiles(); /* ensures files 0-4 are DOS alike */

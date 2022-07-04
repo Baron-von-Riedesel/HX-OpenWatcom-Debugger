@@ -6,6 +6,7 @@
   and hence is not restricted to Open Watcom, but should also work with
   MS C(++) compilers, both 16-bit and 32-bit, as long as the CodeView format
   is CV4 or CV5.
+
    The HX trap helper files supplied with the debugger should be able to
   handle DPMI mode switches. So they aren't restricted for debugging binaries
   in the usual HX formats ( that is, NE for 16-bit and PE/PX for 32-bit ),
@@ -20,11 +21,13 @@
   have to be told that. If the debug information is in codeview format
   and OW wlink ( or jwlink ) is to be used as linker, the cvp option has
   to be set.
-   If the program to debug is not in a format that can be handled by the
-  HX program loaders ( NE for DPMILD16, PE/PX for DPMILD32 ), environment
-  switch HDPMI=32 must NOT be set. This switch would make HDPMI run all
-  clients in their own address space, using their own IDT and LDT, and
-  the trap helpers would be unable to access their code and data segments.
+
+   If the program to debug is a protected-mode application, but in a format
+  that cannot be handled by the HX program loaders ( NE, PE/PX ), environment
+  switch HDPMI=32 must NOT be set! Additionally, HDPMI v3.20 or higher is
+  required, since the debugger wants to use an instance of HDPMI exclusively,
+  and the API for that is available since v3.20 only. 
+
 
   2.2 Debugging
 

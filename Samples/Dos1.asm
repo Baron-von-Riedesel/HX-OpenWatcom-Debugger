@@ -1,5 +1,6 @@
 
-;--- 16bit DPMI application
+;--- 16bit DPMI application, linked as MZ. HDPMI=32
+;--- must NOT be set to debug such programs.
 
     .286
     .model small

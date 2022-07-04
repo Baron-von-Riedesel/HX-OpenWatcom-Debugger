@@ -317,7 +317,7 @@ int global uicharlen( int ch )
 int IsTextMode( void )
 {
     unsigned char       text_mode = 0;
-#if 0 /* japheth */
+#if 0
     unsigned char       mode;
     unsigned char       page;
     struct cursor_pos   cursor_position;
@@ -357,15 +357,21 @@ int IsTextMode( void )
     BIOSSetCurPos( cursor_position.row, cursor_position.col, page );
 #else
     // the old code has problems in dosemu if resolution is != 80x25
-	// this is also not too safe, but works better...
+	// this code here relies on VGA, so not really safe, but works ...
 	_asm {
-		push es
-		push 40h
-		pop es
-		mov al, es:[65h]
+		mov dx, 3ceh
+		in al, dx
+		mov ah, al
+		mov al, 6
+		out dx, al
+		inc dx
+		in al, dx
 		and al, 1
+		xor al, 1
 		mov text_mode, al
-		pop es
+		dec dx
+		mov al, ah
+		out dx, al
 	}
 #endif
     return( text_mode );
