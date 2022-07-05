@@ -23,10 +23,9 @@
   to be set.
 
    If the program to debug is a protected-mode application, but in a format
-  that cannot be handled by the HX program loaders ( NE, PE/PX ), environment
-  switch HDPMI=32 must NOT be set! Additionally, HDPMI v3.20 or higher is
-  required, since the debugger wants to use an instance of HDPMI exclusively,
-  and the API for that is available since v3.20 only. 
+  that cannot be handled by the HX program loaders ( NE, PE/PX ), DPMI host
+  HDPMI should be at least v3.20; if this isn't the case, environment variable
+  HDPMI=32 must not be set.
 
 
   2.2 Debugging

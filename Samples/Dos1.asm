@@ -1,6 +1,5 @@
 
-;--- 16bit DPMI application, linked as MZ. HDPMI=32
-;--- must NOT be set to debug such programs.
+;--- 16bit DPMI application, linked as MZ.
 
     .286
     .model small
@@ -23,12 +22,12 @@ main proc c
 nextchar:
     lodsb
     and al,al
-    jz stringdone
+    jz done
     mov dl,al
     mov ah,2
     int 21h
     jmp nextchar
-stringdone:
+done:
     ret
 main endp
 

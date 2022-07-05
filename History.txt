@@ -1,6 +1,11 @@
 
   Changes for HX OpenWatcom WD
 
+  v1.2 __/2022
+  - module stdosfil.obj now included in HXDEV16.
+  - no longer any need to change HDPMI environment variable, HDPMI
+    v3.20 provides an API to change things dynamically.
+
   v1.1 07/2022
 
   - wv source added.
