@@ -1288,11 +1288,11 @@ extern void FiniScreen( void )
         ReInitScreen();
 	} else {
 #endif
-		UserScreen();
 		if ( pInitState && SwapSeg.s.rm ) {
 			_fmemcpy( MK_PM( SwapSeg.s.rm, StateOff ), pInitState, state_size );
-			_VidStateRestore( VID_STATE_SWAP, SwapSeg.s.rm, StateOff );
+//			_VidStateRestore( VID_STATE_SWAP, SwapSeg.s.rm, StateOff );
 		}
+		UserScreen();
 //    }
     DPMIFreeDOSMemoryBlock( SwapSeg.s.pm );
     _Free( RegenSave );

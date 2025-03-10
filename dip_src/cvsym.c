@@ -1372,7 +1372,8 @@ dip_status      DIPENTRY DIPImpSymParmLocation( imp_image_handle *ii,
             case CVRET_RALLOC_NEAR:
             case CVRET_RALLOC_FAR:
                 //NYI: have to handle these suckers
-                NYI();
+                //NYI();
+                Confused(2,"DIPImpSymParmLocation 1", p->return_.f.style );
                 break;
             }
             return( DS_ERR|DS_BAD_LOCATION );
@@ -1430,7 +1431,8 @@ dip_status      DIPENTRY DIPImpSymParmLocation( imp_image_handle *ii,
         case TK_STRUCT:
         case TK_ARRAY:
             //NYI: have to handle these suckers
-            NYI();
+            //NYI();
+            Confused(2,"DIPImpSymParmLocation 2", ti.kind );
             break;
         }
         return( DS_ERR|DS_FAIL );
@@ -1453,7 +1455,8 @@ dip_status      DIPENTRY DIPImpSymParmLocation( imp_image_handle *ii,
     case CV_AXP:
     case CV_GENERIC:
         //NYI: have to handle all of these suckers
-        NYI();
+        //NYI();
+        Confused(2,"DIPImpSymParmLocation 3", call );
         break;
     }
     return( DS_ERR|DS_NO_PARM );

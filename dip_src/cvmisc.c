@@ -243,13 +243,34 @@ void NYI( void )
     a /= b; /* cause a fault */
 }
 
-void __stdcall OutputDebugStringA( char * );
+void OutputDebugStringA( char * );
+#pragma aux OutputDebugStringA = \
+    "cld" \
+    "lbl1:" \
+    "lodsb" \
+    "cmp al,0" \
+    "jz lbl2" \
+    "mov dl,al" \
+    "mov ax,0" \
+    "int 41h" \
+    "jmp lbl1" \
+    "lbl2:" \
+    parm [esi] \
+    modify exact [esi ax dx]
+
+extern char *itoa( int, char *, int );
 
 void Confused( int type, char *function, uint code )
 {
-    char szMsg[128];
-    //sprintf( szMsg, "codeview.Confused( %u, %s, %u )\r\n", type, function, code );
-    //OutputDebugStringA( szMsg );
+    char tmp[16];
+    OutputDebugStringA( "codeview.dip - " );
+    OutputDebugStringA( function );
+    OutputDebugStringA( " type=" );
+    OutputDebugStringA( itoa(type, tmp, 10 ) );
+    OutputDebugStringA( " code=" );
+    OutputDebugStringA( itoa(code, tmp, 10 ) );
+    OutputDebugStringA( "\r\n" );
+    _asm int 3;
     /* don't know what's happening */
     NYI();
 }
